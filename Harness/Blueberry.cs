@@ -13,51 +13,89 @@ namespace blueberries_FileManager
 		public string FileExtention { get; set; }
 		public DateTime DateChanged { get; set; }
 
-		//byte[] ourByte[] = new();
 		public long Size;
 		public bool ReadOnly;
 
 
 		public bool FileExists(string _filepath)
 		{
-			// Add Code Check
-			return true;
+			return File.Exists(_filepath);
+			//return true;
 		}
 
+		//***** NEEDS WORK***
+		//Directory info memory expensive
 		public string GetDirectory(string _filepath)
 		{
-			return "get code";
+			if (File.Exists(_filepath))
+			{
+				DirectoryInfo directoryInfo = new DirectoryInfo(_filepath);
+				string directoryName = string.Empty;
+				if (directoryInfo.Parent == null)
+				{
+					directoryName = _filepath;
+				}
+				else
+				{
+					directoryName = Path.GetDirectoryName(_filepath);
+				}
+				return directoryName;
+			}
+			else
+			{
+				return "Directory Not Found";
+			}
 		}
 
+		//****NEEDS WORK*** Directory.EnumerateFiles array ~less memory
 		public string GetLargestFile(string _filepath)
 		{
-			return "do code";
+			if (File.Exists(_filepath))
+			{
+				//find largest file
+			}
+			else
+			{
+				return " File not found";
+			}
+			//if a tie is found, first one alpha sorted
+			return _filepath;
 		}
 
+		//****NEEDS WORK***
 		public string GetVowels(string _filepath)
 		{
 			//     //Format: 12 Es, 1 A, 4 Is, 6 Os, 2 Us, 0Ys
 			//     //return all zeros if file supplied has no txt extension
 
-			return "set code";
+			return "in progress";
 		}
 
 		public string GetFileName(string _filepath)
 		{
-			return "do code";
+			if (File.Exists(_filepath))
+			{
+
+				string fileName = Path.GetFileNameWithoutExtension(_filepath);
+				return fileName;
+
+			}
+			else
+			{
+				return "File Not Found";
+			}
 		}
 
+		//returns path extention 
+		//if file contains double extention this will only remove the end extention
 		public string getFileExtention(string _filepath)
 		{
-			return "do code";
+			return Path.GetExtension(_filepath);
 		}
 
-
+		//****NEEDS WORK*****
 		public string ToString(string _filepath)
 		{
-			// returns a string concatention of:
-			// FilePath; Size; ReadOnly; DateChanged
-
 			return _filepath + Size + ReadOnly + DateChanged;
 		}
 	}

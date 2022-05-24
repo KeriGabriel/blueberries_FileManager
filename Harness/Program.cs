@@ -20,8 +20,3 @@ Console.WriteLine("The Filename is - do we know? " + ourBerry.GetFileName(filepa
 Console.WriteLine("The file extension is: " + ourBerry.getFileExtention(filepath) + "\n");
 
 Console.WriteLine("String Override = " + ourBerry.ToString(filepath) + "\n");
-
-
-
-
-
