@@ -59,9 +59,6 @@ namespace blueberries_FileManager
 			// FilePath; Size; ReadOnly; DateChanged
 
 			return _filepath + Size + ReadOnly + DateChanged;
-
-
-			//return base.ToString(string _filepath);
 		}
 	}
 }
