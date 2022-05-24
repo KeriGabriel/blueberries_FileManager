@@ -15,7 +15,7 @@ Console.WriteLine("The Largest File in the directory is: " + ourBerry.GetVowels(
 
 Console.WriteLine("The vowel weight is: " + ourBerry.GetVowels(filepath) + "\n");
 
-Console.WriteLine("The Filename is - do we know? " + ourBerry.GetFileName(filepath) + "\n");
+Console.WriteLine("The Filename is: " + ourBerry.GetFileName(filepath) + "\n");
 
 Console.WriteLine("The file extension is: " + ourBerry.getFileExtention(filepath) + "\n");
 

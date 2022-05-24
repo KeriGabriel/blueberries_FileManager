@@ -11,6 +11,10 @@ namespace blueberries_FileManager
 		public string VowelWeight { get; set; }
 		public string FileName { get; set; }
 		public string FileExtention { get; set; }
+		
+		/// <summary>
+		/// How / Where do we need to collect the data changed? 
+		/// </summary>
 		public DateTime DateChanged { get; set; }
 
 		public long Size;
@@ -23,9 +27,15 @@ namespace blueberries_FileManager
 			//return true;
 		}
 
-		//***** NEEDS WORK***
-		//Directory info memory expensive
+
+		//Needs Work
 		public string GetDirectory(string _filepath)
+		/*Directory info memory expensive
+		 * 
+		 * AP - Can we get this when doing the "if exists" method?
+		 * If the file exists, the directory must be valid?
+		 * 
+		 */
 		{
 			if (File.Exists(_filepath))
 			{
@@ -100,47 +110,3 @@ namespace blueberries_FileManager
 		}
 	}
 }
-
-
-
-
-
-
-       // public string filepath;
-       // public string DirectoryName(string filepath)
-       // {
-       //     return filepath;
-       // }
-       // public string LarestFileINCurrentDirectory(string filepath)
-       // {
-       //     //if a tie is found, first one alpha sorted
-       //     return filepath ;
-       // }
-       // string VowelWeight(string filepath)
-       // {
-       //     //Format: 12 Es, 1 A, 4 Is, 6 Os, 2 Us, 0Ys
-       //     //return all zeros if file supplied has no txt extension
-       //     return filepath ;
-       // }
-       // string FileName;
-       // string FileExtension(string filepath)
-       // {
-       //     return Path.GetExtension(filepath);
-       // }
-       // byte[] GetByteArray(string filepath)
-       // {
-       //     byte[] bytes = new byte[0];
-       //     return bytes;
-       // }
-       //public Blueberry()
-       // {
-           
-       //     // returns a string concatenation of:
-       //     string FilePath;
-       //     long Size;
-       //     bool ReadOnly;
-       //     DateTime DateChanged;
-       //     //string newString = FilePath + Size + DateChanged;
-       //     return ;
-
-       // }
