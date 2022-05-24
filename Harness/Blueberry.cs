@@ -77,8 +77,17 @@ namespace blueberries_FileManager
 		{
 			//     //Format: 12 Es, 1 A, 4 Is, 6 Os, 2 Us, 0Ys
 			//     //return all zeros if file supplied has no txt extension
-
-			return "in progress";
+			int[] c = new int[6];
+			char[] l = new char[6] { 'A', 'E', 'I', 'O', 'U', 'Y' };
+			string f = Path.GetFileNameWithoutExtension(_filepath).ToUpper();
+			for (int v = 0; v < l.Length; v++)
+				if (Path.GetExtension(_filepath) == ".txt") c[v] = f.Count(n => n == l[v]);
+				else c[v] = 0;
+			string output = "";
+			for (int i = 0; i < l.Length; i++)
+				if (c[i] == 1) output = $"{output}{c[i]} {l[i]}, ";
+				else output = $"{output}{c[i]} {l[i]}s, ";
+			return output.Substring(0, output.Length-2);
 		}
 
 		public string GetFileName(string _filepath)
