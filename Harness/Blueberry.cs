@@ -25,8 +25,6 @@ namespace blueberries_FileManager
 		{
 			return File.Exists(_filepath);
 		}
-
-
 		//Needs Work
 		public string GetDirectory(string _filepath)
 		/*Directory info memory expensive
@@ -36,30 +34,37 @@ namespace blueberries_FileManager
 		 * 
 		 */
 		{
-			if (File.Exists(_filepath))
+			if (FileExists(_filepath))
 			{
-				DirectoryInfo directoryInfo = new DirectoryInfo(_filepath);
-				string directoryName = string.Empty;
-				if (directoryInfo.Parent == null)
-				{
-					directoryName = _filepath;
-				}
-				else
-				{
-					directoryName = Path.GetDirectoryName(_filepath);
-				}
-				return directoryName;
+				return Path.GetDirectoryName(_filepath);
 			}
 			else
 			{
-				return "Directory Not Found";
+				return "File Not Found";
 			}
+			//if (File.Exists(_filepath))
+			//{
+			//	DirectoryInfo directoryInfo = new DirectoryInfo(_filepath);
+			//	string directoryName = string.Empty;
+			//	if (directoryInfo.Parent == null)
+			//	{
+			//		directoryName = _filepath;
+			//	}
+			//	else
+			//	{
+			//		directoryName = Path.GetDirectoryName(_filepath);
+			//	}
+			//	return directoryName;
+			//}
+			//else
+			//{
+			//	return "Directory Not Found";
+			//}
 		}
-
 		//****NEEDS WORK*** Directory.EnumerateFiles array ~less memory
 		public string GetLargestFile(string _filepath)
 		{
-			if (File.Exists(_filepath))
+			if (FileExists(_filepath))
 			{
 				//find largest file
 			}
@@ -91,12 +96,10 @@ namespace blueberries_FileManager
 
 		public string GetFileName(string _filepath)
 		{
-			if (File.Exists(_filepath))
+			if (FileExists(_filepath))
 			{
-
-				string fileName = Path.GetFileNameWithoutExtension(_filepath);
-				return fileName;
-
+				FileName = Path.GetFileNameWithoutExtension(_filepath);
+				return FileName;
 			}
 			else
 			{
@@ -108,13 +111,24 @@ namespace blueberries_FileManager
 		//if file contains double extention this will only remove the end extention
 		public string getFileExtention(string _filepath)
 		{
-			return Path.GetExtension(_filepath);
+			if (FileExists(_filepath))
+            {
+				return Path.GetExtension(_filepath);
+			}
+			else { return "File not found"; }
 		}
 
 		//****NEEDS WORK*****
 		public string ToString(string _filepath)
 		{
-			return _filepath + Size + ReadOnly + DateChanged;
+			if (FileExists(_filepath))
+			{
+				return " \n The filepath: " + _filepath + "\n" +
+				" The Size of the file: " + Size + "\n" +
+				" Read only: " + ReadOnly + "\n" +
+				" Date Changed: " + DateChanged;
+			}
+			else { return "File not found"; }	
 		}
 	}
 }

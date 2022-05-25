@@ -3,7 +3,7 @@ using System;
 
 string filepath;
 Console.WriteLine("Enter the filepath");
-filepath = Console.ReadLine();
+filepath = @"" + Console.ReadLine();
 
 Blueberry ourBerry = new();
 
