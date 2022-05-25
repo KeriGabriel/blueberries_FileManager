@@ -124,7 +124,10 @@ namespace blueberries_FileManager
 		{
 			if (FileExists(_filepath))
 			{
-				return _filepath + Size + ReadOnly + DateChanged;
+				return " \n The filepath: " + _filepath + "\n" +
+				" The Size of the file: " + Size + "\n" +
+				" Read only: " + ReadOnly + "\n" +
+				" Date Changed: " + DateChanged;
 			}
 			else { return "File not found"; }	
 		}
