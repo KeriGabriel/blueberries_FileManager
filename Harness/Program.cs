@@ -2,8 +2,11 @@
 using System;
 
 string filepath;
-Console.WriteLine("Enter the filepath");
+//Console.WriteLine("Enter the filepath");
 filepath = @"" + Console.ReadLine();
+
+// To do:  fix this back to a prompt / dialog
+filepath = "c:\temp";
 
 Blueberry ourBerry = new();
 
