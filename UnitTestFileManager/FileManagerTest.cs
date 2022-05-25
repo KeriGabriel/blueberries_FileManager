@@ -4,26 +4,17 @@ using System;
 
 namespace UnitTestFileManager
 {
-    [TestClass]
-    public class FileManagerTest
+	[TestClass]
+	public class FileManagerTest
     {
+		public TestContext TestContext { get; set; }
 		//To do: move to runsettings as path to testing directory within solution
-		Blueberry testBerry = new();
-		string bigFile = "c:\temp\bigfile.txt";
+		string bigFile = "c:\\temp\\bigfile.txt";
+		string goodFile = "\\Testing\\goodFile.txt";
+		string goodPath = "c:\\temp";
+		string badPath = "c:\\temp\\foo";
 
-		string goodPath = "c:\temp";
-		string goodFile = "c:\temp\test.txt";
-
-		string badPath = "c:\temp\foo";
-		string badFile = "c:\temp\foo.bar";
-
-
-		//string goodPath = "./Testing/ToDo.txt";
-		//string goodDirectory = "./Testing/";
-
-		//string badPath = "./foo.bar";
-		//string badDirectory = "./foo/";
-
+		Blueberry testBerry = new();		
 
 		#region Test sucess / failure of Blueberry.FileExists()
 		[TestMethod]

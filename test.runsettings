@@ -1,7 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RunSettings>
-	<RunConfiguration>
 
+	<!-- Parameters used by tests at run time -->
+	<TestRunParameters>
+
+		<Parameter name = "bigFile"	value = "TestBigFile.pdf" />
+		<Parameter name = "goodpath"	value= "/Testing" />
+		<Parameter name = "goodFile"	value= "GoodFile.txt" />
+		<Parameter name = "badPath"	value ="c:\foo" />
+
+	</TestRunParameters>
+
+
+	<RunConfiguration>
 		<ResultsDirectory>.\Testing</ResultsDirectory>
 
 		<!-- Path to Test Adapters -->
@@ -17,9 +28,5 @@
 	</RunConfiguration>
 
 
-	<!-- Parameters used by tests at run time -->
-	<TestRunParameters>
-		<Parameter name="filepath" value="./ToDo.txt" />
-	</TestRunParameters>
 
 </RunSettings>
