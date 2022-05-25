@@ -24,7 +24,6 @@ namespace blueberries_FileManager
 		public bool FileExists(string _filepath)
 		{
 			return File.Exists(_filepath);
-			//return true;
 		}
 
 
