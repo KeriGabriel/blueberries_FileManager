@@ -43,7 +43,6 @@ namespace blueberries_FileManager
 			}
 		}
 		//get's largest file in current directory and it's size
-
 		public string GetLargestFile(string _filepath)
 		{
 			if (FileExists(_filepath))
@@ -66,6 +65,7 @@ namespace blueberries_FileManager
 				return " File not found";
 			}			
 		}
+		//overloaded to provide output in string form
 		public string GetLargestFile(string _filepath, bool InStringForm)
 		{
 			if (FileExists(_filepath))
@@ -119,6 +119,7 @@ namespace blueberries_FileManager
 				return "File Not Found";
 			}
 		}
+		//is file read only
 		public string GetReadOnly(string _filepath)
         {
             try 
@@ -145,25 +146,32 @@ namespace blueberries_FileManager
 			}
 			else { return "File not found"; }
 		}
+		//provides length of file
 		public long GetFileLength(FileInfo fileInfo)
 		{
+			long length = 0;	
 			try
 			{
-				Size = fileInfo.Length;
+				 length = fileInfo.Length;
 			}
 			catch (FileNotFoundException)
 			{
 				// If no file add zero bytes to the total  
-				Size = 0;
+				length = 0;
 			}
-			return Size;
+			return length;
 		}
 		//****NEEDS WORK*****
 		public string ToString(string _filepath)
 		{
 			if (FileExists(_filepath))
 			{
+				FileInfo fileInfo = new FileInfo(_filepath);
+				GetReadOnly(_filepath);
+				getDateChanged(_filepath);
+				Size=GetFileLength(fileInfo);
 
+				//GetFileLength(_filepath);
 				return " \n The filepath: " + _filepath + "\n" +
 				" The Size of the file: " + Size + "\n" +
 				" Read only: " + ReadOnly + "\n" +

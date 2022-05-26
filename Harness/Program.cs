@@ -17,7 +17,7 @@ if (ourBerry.FileExists(filepath))
 
     Console.WriteLine(ourBerry.GetLargestFile(filepath,true) + "\n");
 
-    //Console.WriteLine("The Largest File in the directory is: " + ourBerry.GetLargestFile(filepath) + "\n");
+    Console.WriteLine("The Largest File in the directory is: " + ourBerry.GetLargestFile(filepath) + "\n");
 
     Console.WriteLine("The vowel weight is: " + ourBerry.GetVowels(filepath) + "\n");
 
