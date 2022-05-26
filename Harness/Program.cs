@@ -15,7 +15,7 @@ if (ourBerry.FileExists(filepath))
 
     Console.WriteLine("Directory Name is: " + ourBerry.GetDirectory(filepath) + "\n");
 
-    Console.WriteLine(ourBerry.GetLargestFile(filepath) + "\n");
+    Console.WriteLine(ourBerry.GetLargestFile(filepath,true) + "\n");
 
     //Console.WriteLine("The Largest File in the directory is: " + ourBerry.GetLargestFile(filepath) + "\n");
 

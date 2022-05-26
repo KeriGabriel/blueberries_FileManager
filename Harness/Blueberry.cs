@@ -25,14 +25,13 @@ namespace blueberries_FileManager
 		{
 			return File.Exists(_filepath);
 		}
-		//Needs Work
+		public DateTime getDateChanged(string _filepath)
+        {
+			DateChanged= File.GetLastWriteTime(_filepath);
+			return DateChanged;
+		}
+		//Gets directory path
 		public string GetDirectory(string _filepath)
-		/*Directory info memory expensive
-		 * 
-		 * AP - Can we get this when doing the "if exists" method?
-		 * If the file exists, the directory must be valid?
-		 * 
-		 */
 		{
 			if (FileExists(_filepath))
 			{
@@ -43,7 +42,8 @@ namespace blueberries_FileManager
 				return "File Not Found";
 			}
 		}
-		//****NEEDS WORK*** Directory.EnumerateFiles array ~less memory
+		//get's largest file in current directory and it's size
+
 		public string GetLargestFile(string _filepath)
 		{
 			if (FileExists(_filepath))
@@ -59,12 +59,35 @@ namespace blueberries_FileManager
 				 orderby length descending
 				 select file).First();
 				
-				return "The largest file in directory is "+ largestFile.Name+ " The length of the largest file is "+ largestFile.Length;
+				return largestFile.Name;
 			}
 			else
 			{
 				return " File not found";
 			}			
+		}
+		public string GetLargestFile(string _filepath, bool InStringForm)
+		{
+			if (FileExists(_filepath))
+			{
+				//find largest file
+				//if a tie is found, first one alpha sorted
+				string directory = GetDirectory(_filepath);
+				DirectoryInfo directoryInfo = new DirectoryInfo(directory);
+				IEnumerable<FileInfo> fileList = directoryInfo.GetFiles("*.*", SearchOption.AllDirectories);
+				FileInfo largestFile =
+				(from file in fileList
+				 let length = GetFileLength(file)
+				 where length > 0
+				 orderby length descending
+				 select file).First();
+
+				return "The largest file in directory is " + largestFile.Name + " The length of the largest file is " + largestFile.Length;
+			}
+			else
+			{
+				return " File not found";
+			}
 		}
 		//returns vowel count of a txt file
 		public string GetVowels(string _filepath)
@@ -140,6 +163,7 @@ namespace blueberries_FileManager
 		{
 			if (FileExists(_filepath))
 			{
+
 				return " \n The filepath: " + _filepath + "\n" +
 				" The Size of the file: " + Size + "\n" +
 				" Read only: " + ReadOnly + "\n" +
