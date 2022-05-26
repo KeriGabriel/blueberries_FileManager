@@ -78,6 +78,7 @@ namespace blueberries_FileManager
 				 where length > 0
 				 orderby length descending
 				 select file).First();
+				
 				return "The largest file in directory is "+ largestFile.Name+ " The length of the largest file is "+ largestFile.Length;
 			}
 			else
@@ -141,19 +142,18 @@ namespace blueberries_FileManager
 			}
 			else { return "File not found"; }
 		}
-		static long GetFileLength(FileInfo fileInfo)
+		public long GetFileLength(FileInfo fileInfo)
 		{
-			long Length;
 			try
 			{
-				Length = fileInfo.Length;
+				Size = fileInfo.Length;
 			}
 			catch (FileNotFoundException)
 			{
 				// If no file add zero bytes to the total  
-				Length = 0;
+				Size = 0;
 			}
-			return Length;
+			return Size;
 		}
 		//****NEEDS WORK*****
 		public string ToString(string _filepath)
