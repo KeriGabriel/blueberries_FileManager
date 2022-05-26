@@ -42,26 +42,6 @@ namespace blueberries_FileManager
 			{
 				return "File Not Found";
 			}
-          
-			//if (File.Exists(_filepath))
-			//{
-			//	DirectoryInfo directoryInfo = new DirectoryInfo(_filepath);
-			//	string directoryName = string.Empty;
-			//	if (directoryInfo.Parent == null)
-			//	{
-			//		directoryName = _filepath;
-			//	}
-			//	else
-			//	{
-			//		directoryName = Path.GetDirectoryName(_filepath);
-			//	}
-			//	return directoryName;
-			//}
-			//else
-			//{
-			//	return "Directory Not Found";
-			//}
-			//return directoryInfo.FullName;
 		}
 		//****NEEDS WORK*** Directory.EnumerateFiles array ~less memory
 		public string GetLargestFile(string _filepath)
