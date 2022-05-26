@@ -3,7 +3,7 @@
 
 	<!-- Parameters used by tests at run time -->
 	<TestRunParameters>
-		<Parameter name = "bigFile"	value = "TestBigFile.pdf" />
+		<Parameter name = "bigFile"	value = "c:\temp\bigFile.txt" />
 		<Parameter name = "goodpath"	value= "/Testing" />
 		<Parameter name = "goodFile"	value= "GoodFile.txt" />
 		<Parameter name = "badPath"	value = "c:\foo" />

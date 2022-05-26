@@ -7,12 +7,33 @@ namespace UnitTestFileManager
 	[TestClass]
 	public class FileManagerTest
     {
-		public TestContext TestContext { get; set; }
-		//To do: move to runsettings as path to testing directory within solution
-		string bigFile = "c:\\temp\\bigfile.txt";
-		string goodFile = "\\Testing\\goodFile.txt";
-		string goodPath = "c:\\temp";
-		string badPath = "c:\\temp\\foo";
+
+		private static string? bigFile = null;
+		private static string? goodPath = null;
+		private static string? goodFile = null;
+		private static string? badPath = null;
+		[ClassInitialize]
+		public static void ClassInit(TestContext context)
+		{
+			// what do you want to set up as the test suite
+			// is about to be run
+
+			bigFile = context.Properties["bigFile"].ToString();
+			goodPath = context.Properties["goodPath"].ToString();
+			goodFile = context.Properties["goodFile"].ToString();
+			badPath = context.Properties["badpath"].ToString();
+
+			Console.WriteLine("Test are initializing...");
+		}
+
+
+
+		//public TestContext TestContext { get; set; }
+		////To do: move to runsettings as path to testing directory within solution
+		//string bigFile = "c:\\temp\\bigfile.txt";
+		//string goodFile = "\\Testing\\goodFile.txt";
+		//string goodPath = "c:\\temp";
+		//string badPath = "c:\\temp\\foo";
 
 		Blueberry testBerry = new();		
 
