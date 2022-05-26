@@ -2,11 +2,11 @@
 using System;
 
 string filepath;
-//Console.WriteLine("Enter the filepath");
+Console.WriteLine("Enter the filepath");
 filepath = @"" + Console.ReadLine();
 
 // To do:  fix this back to a prompt / dialog
-filepath = "c:\temp";
+//filepath = "c:\temp";
 
 Blueberry ourBerry = new();
 
@@ -14,7 +14,9 @@ Console.WriteLine("Does File Exist? " + ourBerry.FileExists(filepath) + "\n");
 
 Console.WriteLine("Directory Name is: " + ourBerry.GetDirectory(filepath) + "\n");
 
-Console.WriteLine("The Largest File in the directory is: " + ourBerry.GetLargestFile(filepath) + "\n");
+Console.WriteLine(ourBerry.GetLargestFile(filepath) + "\n");
+
+//Console.WriteLine("The Largest File in the directory is: " + ourBerry.GetLargestFile(filepath) + "\n");
 
 Console.WriteLine("The vowel weight is: " + ourBerry.GetVowels(filepath) + "\n");
 

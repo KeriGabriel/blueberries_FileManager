@@ -42,6 +42,7 @@ namespace blueberries_FileManager
 			{
 				return "File Not Found";
 			}
+          
 			//if (File.Exists(_filepath))
 			//{
 			//	DirectoryInfo directoryInfo = new DirectoryInfo(_filepath);
@@ -60,6 +61,7 @@ namespace blueberries_FileManager
 			//{
 			//	return "Directory Not Found";
 			//}
+			//return directoryInfo.FullName;
 		}
 		//****NEEDS WORK*** Directory.EnumerateFiles array ~less memory
 		public string GetLargestFile(string _filepath)
@@ -67,16 +69,23 @@ namespace blueberries_FileManager
 			if (FileExists(_filepath))
 			{
 				//find largest file
+				//if a tie is found, first one alpha sorted
+				string directory =GetDirectory(_filepath);
+				DirectoryInfo directoryInfo = new DirectoryInfo(directory);
+				IEnumerable<FileInfo> fileList = directoryInfo.GetFiles("*.*", SearchOption.AllDirectories);
+				FileInfo largestFile=
+				(from file in fileList let length = GetFileLength(file)
+				 where length > 0
+				 orderby length descending
+				 select file).First();
+				return "The largest file in directory is "+ largestFile.Name+ " The length of the largest file is "+ largestFile.Length;
 			}
 			else
 			{
 				return " File not found";
-			}
-			//if a tie is found, first one alpha sorted
-			return _filepath;
+			}			
 		}
-
-		//****NEEDS WORK***
+		//returns vowel count of a txt file
 		public string GetVowels(string _filepath)
 		{
 			//     //Format: 12 Es, 1 A, 4 Is, 6 Os, 2 Us, 0Ys
@@ -93,7 +102,7 @@ namespace blueberries_FileManager
 				else output = $"{output}{c[i]} {l[i]}s, ";
 			return output.Substring(0, output.Length-2);
 		}
-
+		// returns file name 
 		public string GetFileName(string _filepath)
 		{
 			if (FileExists(_filepath))
@@ -117,7 +126,20 @@ namespace blueberries_FileManager
 			}
 			else { return "File not found"; }
 		}
-
+		static long GetFileLength(FileInfo fileInfo)
+		{
+			long Length;
+			try
+			{
+				Length = fileInfo.Length;
+			}
+			catch (FileNotFoundException)
+			{
+				// If no file add zero bytes to the total  
+				Length = 0;
+			}
+			return Length;
+		}
 		//****NEEDS WORK*****
 		public string ToString(string _filepath)
 		{
