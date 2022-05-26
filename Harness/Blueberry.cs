@@ -19,7 +19,7 @@ namespace blueberries_FileManager
 
 		public long Size;
 		public bool ReadOnly;
-
+		
 
 		public bool FileExists(string _filepath)
 		{
@@ -115,7 +115,22 @@ namespace blueberries_FileManager
 				return "File Not Found";
 			}
 		}
-
+		public string GetReadOnly(string _filepath)
+        {
+            try 
+            {
+				FileInfo fileInfo = new FileInfo(_filepath);
+                if (fileInfo.IsReadOnly)
+                {
+					ReadOnly = true;
+				}
+				return ReadOnly.ToString();
+			}
+            catch (FileNotFoundException)
+            {
+				return "File Not Found";
+            }
+        }
 		//returns path extention 
 		//if file contains double extention this will only remove the end extention
 		public string getFileExtention(string _filepath)
