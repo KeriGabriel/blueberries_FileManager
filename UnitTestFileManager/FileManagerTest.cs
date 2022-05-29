@@ -89,7 +89,7 @@ namespace UnitTestFileManager
 		{
 			// Format: 12 Es, 1 A, 4 Is, 6 Os, 2 Us, 0Ys
 			//	./Testing/GoodFile.txt
-			Assert.AreEqual("2 Es, 0 A, 2 Is, 2 Os, 0 Us, 0Ys)", testBerry.VowelWeight(goodPath));
+			Assert.AreEqual("2 Es, 0 A, 2 Is, 2 Os, 0 Us, 0Ys", testBerry.VowelWeight(goodPath));
 		}
 
 		[TestMethod]
@@ -103,11 +103,10 @@ namespace UnitTestFileManager
 		public void VowelWeightExtentionFail()
 		{
 			// Format: 12 Es, 1 A, 4 Is, 6 Os, 2 Us, 0Ys
-			Assert.AreNotEqual("0 Es, 0 A, 0 Is, 0 Os, 0 Us, 0Ys", testBerry.VowelWeight(bigFile));
+			Assert.AreNotEqual("2 Es, 0 A, 2 Is, 2 Os, 0 Us, 0Ys", testBerry.VowelWeight(bigFile));
 		}
 
 		#endregion
-
 
 		#region Test FileName(filepath)
 		[TestMethod]
@@ -153,17 +152,20 @@ namespace UnitTestFileManager
 		#endregion
 
 		#region Test ToString(filepath)
+		[TestMethod]
 		public void ToStringSucess()
 		{
-			Assert.AreEqual("boo", testBerry.ToString(goodFile));
+			Assert.AreEqual("./Testing/GoodFile.txt1305False5/24/2022 11:01:26 AM", testBerry.ToString(goodPath));
 		}
 
+		[TestMethod]
 		public void ToStringFail()
 		{
+
+			Assert.AreNotEqual("boo", testBerry.ToString(goodPath));
 
 		}
 
 		#endregion
-
 	}
 }
