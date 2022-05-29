@@ -51,20 +51,6 @@ namespace UnitTestFileManager
 
 		Blueberry testBerry = new();
 
-		#region File Exisits? Test
-		[TestMethod]
-		public void FileExistsSuccess()
-		{
-			Assert.IsTrue(testBerry.FileExists(goodPath));
-		}
-
-		[TestMethod]
-		public void FileExistsFail()
-		{
-			Assert.IsFalse(testBerry.FileExists("ImaginaryFile"));
-		}
-		#endregion
-
 		#region Test DirectoryName(filepath)
 		[TestMethod]
 		public void DirectoryNameSucess()

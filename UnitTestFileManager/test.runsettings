@@ -9,7 +9,6 @@
 		<Parameter name = "goodFileNoExt" value = "GoodFile" />
 	</TestRunParameters>
 
-
 	<RunConfiguration>
 		<!-- <ResultsDirectory>.\Testing</ResultsDirectory> -->
 		<TestSessionTimeout>10000</TestSessionTimeout>
