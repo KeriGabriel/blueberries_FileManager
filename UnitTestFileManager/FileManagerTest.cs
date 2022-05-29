@@ -17,36 +17,40 @@ namespace UnitTestFileManager
 		//private static string goodFileNoExt;
 
 		//// Updated to use relative path
-		private static string bigFile = @"Testing\BigFile.pdf";
-		private static string goodPath = @"Testing\GoodFile.txt";
-		private static string goodFile = @"Testing\GoodFile.txt";
-		private static string goodFileNoExt = "GoodFile";
+		//private static string bigFile = @"Testing\BigFile.pdf";
+		//private static string goodPath = @"Testing";
+		//private static string goodFile = @"Testing\GoodFile.txt";
+		//private static string goodFileNoExt = "GoodFile";
+		private static string bigFile = null;
+		private static string goodPath = null;
+		private static string goodFile = null;
+		private static string goodFileNoExt = null;
 
-		
 		public TestContext context;
 
 		[ClassInitialize]
 		public static void ClassInit(TestContext context)
 		{
-			
-			//string localPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-			string localPath = Environment.CurrentDirectory;
+		 bigFile = @"Testing\BigFile.pdf";
+		 goodPath = @"Testing";
+		 goodFile = @"Testing\GoodFile.txt";
+		goodFileNoExt = "GoodFile";
+
+		string localPath = Environment.CurrentDirectory;
 			localPath = Directory.GetParent(localPath).FullName;
 			localPath = Directory.GetParent(localPath).FullName;
 			localPath = Directory.GetParent(localPath).FullName;
-			//localPath = Path.Combine(localPath, @"..\..");
 
 			bigFile = Path.Combine(localPath, bigFile);
 			goodPath=Path.Combine(localPath, goodFile);
 			goodFile = Path.Combine(localPath, goodFile);
+
 			//bigFile = context.Properties["bigFile"].ToString();
 			//bigFile = Path.Combine(localPath, bigFile);
-
 
 			//goodPath = context.Properties["goodPath"].ToString();
 			//goodFile = context.Properties["goodPath"].ToString();
 			//goodFileNoExt = context.Properties["goodFileNoExt"].ToString();
-
 
 			//goodFile = context.Properties["goodFile"].ToString();
 			//goodFile = Path.Combine(localPath, goodFile);

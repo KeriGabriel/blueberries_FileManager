@@ -38,8 +38,8 @@ namespace blueberries_FileManager
 				 where length > 0
 				 orderby length descending
 				 select file).First();
-
-				return largestFile.Name;
+				return largestFile.ToString();
+				//return largestFile.Name;
 			}
 			else
 			{
