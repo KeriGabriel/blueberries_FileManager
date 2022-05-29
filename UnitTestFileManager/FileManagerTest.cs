@@ -17,12 +17,12 @@ namespace UnitTestFileManager
 		//private static string goodFileNoExt;
 
 		//// Updated to use relative path
-		private static string bigFile = "BigFile.pdf";
-		private static string goodPath = "./Testing/GoodFile.txt";
-		private static string goodFile = "GoodFile.txt";
+		private static string bigFile = @"Testing\BigFile.pdf";
+		private static string goodPath = @"Testing\GoodFile.txt";
+		private static string goodFile = @"Testing\GoodFile.txt";
 		private static string goodFileNoExt = "GoodFile";
 
-
+		
 		public TestContext context;
 
 		[ClassInitialize]
@@ -30,10 +30,15 @@ namespace UnitTestFileManager
 		{
 			
 			//string localPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-			//string localPath = Environment.CurrentDirectory;
+			string localPath = Environment.CurrentDirectory;
+			localPath = Directory.GetParent(localPath).FullName;
+			localPath = Directory.GetParent(localPath).FullName;
+			localPath = Directory.GetParent(localPath).FullName;
+			//localPath = Path.Combine(localPath, @"..\..");
 
-			//bigFile = Path.Combine(root, bigFile);
-
+			bigFile = Path.Combine(localPath, bigFile);
+			goodPath=Path.Combine(localPath, goodFile);
+			goodFile = Path.Combine(localPath, goodFile);
 			//bigFile = context.Properties["bigFile"].ToString();
 			//bigFile = Path.Combine(localPath, bigFile);
 
