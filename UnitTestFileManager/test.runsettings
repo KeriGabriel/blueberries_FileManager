@@ -9,7 +9,6 @@
 		<Parameter name = "badPath"	value = "foo" />
 	</TestRunParameters>
 
-
 	<RunConfiguration>
 		<!-- <ResultsDirectory>.\Testing</ResultsDirectory> -->
 		<TestSessionTimeout>10000</TestSessionTimeout>
