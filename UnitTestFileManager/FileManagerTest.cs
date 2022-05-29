@@ -11,30 +11,40 @@ namespace UnitTestFileManager
 	{
 
 		// Updated to use relative path
+		//private static string bigFile;
+		//private static string goodPath;
+		//private static string goodFile;
+		//private static string goodFileNoExt;
+
+		//// Updated to use relative path
 		private static string bigFile = "BigFile.pdf";
 		private static string goodPath = "./Testing/GoodFile.txt";
 		private static string goodFile = "GoodFile.txt";
 		private static string goodFileNoExt = "GoodFile";
 
-		//public TestContext TestContext { get; set; }
+
+		public TestContext context;
+
 		[ClassInitialize]
 		public static void ClassInit(TestContext context)
 		{
-			// what do you want to set up as the test suite
-			// is about to be run
-			// string localPath= Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+			
+			//string localPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 			//string localPath = Environment.CurrentDirectory;
 
 			//bigFile = Path.Combine(root, bigFile);
-			//// goodPath = context.Properties["goodPath"].ToString();
-			//        // goodPath = Path.Combine(localPath, goodPath);
 
-			//bigFile =  context.Properties["bigFile"].ToString();
-			//        bigFile=Path.Combine(localPath, bigFile);
+			//bigFile = context.Properties["bigFile"].ToString();
+			//bigFile = Path.Combine(localPath, bigFile);
+
+
+			//goodPath = context.Properties["goodPath"].ToString();
+			//goodFile = context.Properties["goodPath"].ToString();
+			//goodFileNoExt = context.Properties["goodFileNoExt"].ToString();
+
 
 			//goodFile = context.Properties["goodFile"].ToString();
-			//        goodFile=Path.Combine(localPath, goodFile);
-
+			//goodFile = Path.Combine(localPath, goodFile);
 
 			Console.WriteLine("Test are initializing...");
 		}
