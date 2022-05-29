@@ -13,20 +13,19 @@ if (ourBerry.FileExists(filepath))
 {
     Console.WriteLine("Does File Exist? " + ourBerry.FileExists(filepath) + "\n");
 
-    Console.WriteLine("Directory Name is: " + ourBerry.GetDirectory(filepath) + "\n");
+    Console.WriteLine("Directory Name is: " + ourBerry.DirectoryName(filepath) + "\n");
 
-    Console.WriteLine(ourBerry.GetLargestFile(filepath,true) + "\n");
+    Console.WriteLine("The Largest File in the directory is: " + ourBerry.LargestFileInCurrentDirectory(filepath) + "\n");
 
-    Console.WriteLine("The Largest File in the directory is: " + ourBerry.GetLargestFile(filepath) + "\n");
+    Console.WriteLine("The vowel weight is: " + ourBerry.VowelWeight(filepath) + "\n");
 
-    Console.WriteLine("The vowel weight is: " + ourBerry.GetVowels(filepath) + "\n");
+    Console.WriteLine("The Filename is: " + ourBerry.FileName(filepath) + "\n");
 
-    Console.WriteLine("The Filename is: " + ourBerry.GetFileName(filepath) + "\n");
+    Console.WriteLine("The file extension is: " + ourBerry.FileExtention(filepath) + "\n");
 
-    Console.WriteLine("The file extension is: " + ourBerry.getFileExtention(filepath) + "\n");
+	Console.WriteLine("As a Byte Array: " + ourBerry.GetByteArray(filepath));
 
     Console.WriteLine("String Override = " + ourBerry.ToString(filepath) + "\n");
-
 }
 else
 {
