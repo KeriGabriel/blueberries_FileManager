@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using blueberries_FileManager;
 using System;
 using System.IO;
+using System.Text;
 
 namespace UnitTestFileManager
 {
@@ -75,9 +76,8 @@ namespace UnitTestFileManager
 			Assert.AreEqual(bigFile, testBerry.LargestFileInCurrentDirectory(goodPath));
 		}
 
-		// To do: Check requirements for return value
 		[TestMethod]
-		public void LargeFileFail()
+		public void LargestFileFail()
 		{
 			Assert.AreNotEqual(goodFile, testBerry.LargestFileInCurrentDirectory(goodPath));
 		}
@@ -87,14 +87,25 @@ namespace UnitTestFileManager
 		[TestMethod]
 		public void VowelWeightSucess()
 		{
-			Assert.IsFalse(1 == 1);
+			// Format: 12 Es, 1 A, 4 Is, 6 Os, 2 Us, 0Ys
+			//	./Testing/GoodFile.txt
+			Assert.AreEqual("2 Es, 0 A, 2 Is, 2 Os, 0 Us, 0Ys)", testBerry.VowelWeight(goodPath));
 		}
 
 		[TestMethod]
-		public void VowelWeightFail()
+		public void VowelWeightCalcFail()
 		{
-			Assert.IsFalse(1 == 1);
+			// Format: 12 Es, 1 A, 4 Is, 6 Os, 2 Us, 0Ys
+			Assert.AreNotEqual("12 As, 1 E, 1 I, 2 Os, 0 Us, 0 Ys", testBerry.VowelWeight(goodPath));
 		}
+
+		[TestMethod]
+		public void VowelWeightExtentionFail()
+		{
+			// Format: 12 Es, 1 A, 4 Is, 6 Os, 2 Us, 0Ys
+			Assert.AreNotEqual("0 Es, 0 A, 0 Is, 0 Os, 0 Us, 0Ys", testBerry.VowelWeight(bigFile));
+		}
+
 		#endregion
 
 
@@ -130,20 +141,21 @@ namespace UnitTestFileManager
 		[TestMethod]
 		public void ByteArraySucess()
 		{
-			Assert.AreEqual(1, 2);
+			Assert.AreEqual(goodPath,
+				Encoding.ASCII.GetString(testBerry.GetByteArray(goodPath)));
 		}
 
 		[TestMethod]
 		public void ByteArrayFail()
 		{
-			Assert.AreEqual(1, 2);
+			Assert.AreNotEqual("foo", testBerry.GetByteArray(goodPath).ToString());
 		}
 		#endregion
 
 		#region Test ToString(filepath)
 		public void ToStringSucess()
 		{
-
+			Assert.AreEqual("boo", testBerry.ToString(goodFile));
 		}
 
 		public void ToStringFail()
