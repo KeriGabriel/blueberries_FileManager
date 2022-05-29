@@ -2,148 +2,170 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using blueberries_FileManager;
 using System;
 using System.IO;
+using System.Text;
 
 namespace UnitTestFileManager
 {
 	[TestClass]
 	public class FileManagerTest
-    {
+	{
 
-		private static string? bigFile = null;
-		private static string? goodPath = null;
-		private static string? goodFile = null;
-		private static string? badPath = null;
-		public TestContext TestContext { get; set; }
+		// Updated to use relative path
+		private static string bigFile = "BigFile.pdf";
+		private static string goodPath = "./Testing/GoodFile.txt";
+		private static string goodFile = "GoodFile.txt";
+		private static string goodFileNoExt = "GoodFile";
+
+		//public TestContext TestContext { get; set; }
 		[ClassInitialize]
 		public static void ClassInit(TestContext context)
 		{
-            // what do you want to set up as the test suite
-            // is about to be run
-            // string localPath= Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            string localPath = Environment.CurrentDirectory;
-            goodPath = context.Properties["goodPath"].ToString();
-            goodPath = Path.Combine(localPath, goodPath);
-            bigFile =  context.Properties["bigFile"].ToString();
-            bigFile=Path.Combine(localPath, bigFile);
-            goodFile = context.Properties["goodFile"].ToString();
-            goodFile=Path.Combine(localPath, goodFile);
-            badPath = context.Properties["badPath"].ToString();
+			// what do you want to set up as the test suite
+			// is about to be run
+			// string localPath= Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+			//string localPath = Environment.CurrentDirectory;
+
+			//bigFile = Path.Combine(root, bigFile);
+			//// goodPath = context.Properties["goodPath"].ToString();
+			//        // goodPath = Path.Combine(localPath, goodPath);
+
+			//bigFile =  context.Properties["bigFile"].ToString();
+			//        bigFile=Path.Combine(localPath, bigFile);
+
+			//goodFile = context.Properties["goodFile"].ToString();
+			//        goodFile=Path.Combine(localPath, goodFile);
+
 
 			Console.WriteLine("Test are initializing...");
 		}
 
-
-		//public TestContext TestContext { get; set; }
-		////To do: move to runsettings as path to testing directory within solution
-		//string bigFile = "c:\\temp\\bigfile.txt";
-		//string goodFile = "\\Testing\\goodFile.txt";
-		//string goodPath = "c:\\temp";
-		//string badPath = "c:\\temp\\foo";
-
 		Blueberry testBerry = new();
 
-        //#region Test sucess / failure of Blueberry.FileExists()
-        [TestMethod]
-        public void FileExists()
-        {
-            Assert.AreEqual(true, testBerry.FileExists(goodFile));
-        }
+		#region File Exisits? Test
+		[TestMethod]
+		public void FileExistsSuccess()
+		{
+			Assert.IsTrue(testBerry.FileExists(goodPath));
+		}
 
-        //[TestMethod]
-        //public void FileNotExists()
-        //{
-        //    Assert.AreNotEqual(true, testBerry.FileExists(badPath));
-        //}
-        //#endregion
+		[TestMethod]
+		public void FileExistsFail()
+		{
+			Assert.IsFalse(testBerry.FileExists("ImaginaryFile"));
+		}
+		#endregion
 
-        //#region Test success / failure of Blueberry.GetDirectory()
-        //[TestMethod]
-        //public void TestDirectoryFound()
-        //{
-        //    Assert.AreEqual(goodPath, testBerry.GetDirectory(goodPath));
-        //}
+		#region Test DirectoryName(filepath)
+		[TestMethod]
+		public void DirectoryNameSucess()
+		{
+			Assert.AreEqual(".\\Testing", testBerry.DirectoryName(goodPath));
+		}
 
-        //[TestMethod]
-        //public void TestDirectoryMissing()
-        //{
-        //    Assert.IsFalse(badPath == testBerry.GetDirectory(goodPath));
-        //}
-        //#endregion
+		[TestMethod]
+		public void DirectoryNameFail()
+		{
+			Assert.AreNotEqual("/foo", testBerry.DirectoryName(goodPath));
+		}
+		#endregion
 
-        //#region Test success / failure of Blueberry.GetLargestFile()
-        //[TestMethod]
-        //public void LargestFileSucess()
-        //{
-        //    Assert.AreEqual(bigFile, testBerry.GetLargestFile(goodPath));
-        //}
+		#region Test LargestFileInCurrentDirectory(filepath)
+		[TestMethod]
+		public void LargestFileSucess()
+		{
+			Assert.AreEqual(bigFile, testBerry.LargestFileInCurrentDirectory(goodPath));
+		}
 
-        //// To do: Check requirements for return value
-        //[TestMethod]
-        //public void LargeFileFail()
-        //{
-        //    Assert.AreEqual("-1", testBerry.GetLargestFile(goodPath));
-        //}
-        //#endregion
+		[TestMethod]
+		public void LargestFileFail()
+		{
+			Assert.AreNotEqual(goodFile, testBerry.LargestFileInCurrentDirectory(goodPath));
+		}
+		#endregion
 
-        //#region Test success / failure of Blueberry.GetFileName() 
-        //[TestMethod]
-        //public void FileNameSucess()
-        //{
-        //    Assert.AreEqual(goodFile, testBerry.GetFileName(goodPath));
-        //}
+		#region Test VowelWeight(filepath)
+		[TestMethod]
+		public void VowelWeightSucess()
+		{
+			// Format: 12 Es, 1 A, 4 Is, 6 Os, 2 Us, 0Ys
+			//	./Testing/GoodFile.txt
+			Assert.AreEqual("2 Es, 0 A, 2 Is, 2 Os, 0 Us, 0Ys", testBerry.VowelWeight(goodPath));
+		}
 
-        //[TestMethod]
-        //public void FileNameFail()
-        //{
-        //    // To do:  This isn't right
-        //    Assert.IsTrue(false);
-        //    //Assert.AreNotEqual(goodFile, testBerry.GetFileName(goodPath));
-        //}
-        //#endregion
+		[TestMethod]
+		public void VowelWeightCalcFail()
+		{
+			// Format: 12 Es, 1 A, 4 Is, 6 Os, 2 Us, 0Ys
+			Assert.AreNotEqual("12 As, 1 E, 1 I, 2 Os, 0 Us, 0 Ys", testBerry.VowelWeight(goodPath));
+		}
 
-        //#region Test sucess / failure of Blueberry.GetVowels()
-        //// To do:  Fix this
-        //[TestMethod]
-        //public void VowelsCorrect()
-        //{
-        //    Assert.IsTrue("what is correct value" == testBerry.GetVowels(goodPath));
-        //}
-        //[TestMethod]
-        //public void VowelsWrong()
-        //{
-        //    Assert.IsTrue("what is correct value" == testBerry.GetVowels(goodPath));
-        //}
-        //#endregion
+		[TestMethod]
+		public void VowelWeightExtentionFail()
+		{
+			// Format: 12 Es, 1 A, 4 Is, 6 Os, 2 Us, 0Ys
+			Assert.AreNotEqual("2 Es, 0 A, 2 Is, 2 Os, 0 Us, 0Ys", testBerry.VowelWeight(bigFile));
+		}
 
-        //#region Test success / failure of Blueberry.Get
-        //[TestMethod]
-        //public void ExtentionSucess()
-        //{
-        //    Assert.IsTrue("txt" == testBerry.getFileExtention(goodPath));
-        //}
+		#endregion
 
-        //[TestMethod]
-        //public void ExtentionFail()
-        //{
-        //    Assert.IsFalse("pdf" == testBerry.getFileExtention(goodPath));
-        //}
-        //#endregion
+		#region Test FileName(filepath)
+		[TestMethod]
+		public void FileNameSucess()
+		{
+			Assert.AreEqual(goodFileNoExt, testBerry.FileName(goodPath));
+		}
 
-        //#region Test Sucess / Failure of Blueberry.ToString()
-        //// To do:  Not Done
-        //[TestMethod]
-        //public void ToStringSucess()
-        //{
-        //    Assert.IsFalse(true);
-        //}
+		[TestMethod]
+		public void FileNameFail()
+		{
+			Assert.AreNotEqual("foo", testBerry.FileName(goodPath));
+		}
+		#endregion
 
-        //[TestMethod]
-        //public void ToStringFail()
-        //{
-        //    Assert.IsFalse(true);
-        //}
+		#region Test FileExtention(filepath)
+		[TestMethod]
+		public void FileExtention()
+		{
+			Assert.AreEqual(".txt", testBerry.FileExtention(goodPath));
+		}
 
-        //#endregion
+		[TestMethod]
+		public void FileExtentionFail()
+		{
+			Assert.AreNotEqual(".jpg", testBerry.FileName(goodPath));
+		}
+		#endregion
 
-    }
+		#region Test GetByteArray(filepath)
+		[TestMethod]
+		public void ByteArraySucess()
+		{
+			Assert.AreEqual(goodPath,
+				Encoding.ASCII.GetString(testBerry.GetByteArray(goodPath)));
+		}
+
+		[TestMethod]
+		public void ByteArrayFail()
+		{
+			Assert.AreNotEqual("foo", testBerry.GetByteArray(goodPath).ToString());
+		}
+		#endregion
+
+		#region Test ToString(filepath)
+		[TestMethod]
+		public void ToStringSucess()
+		{
+			Assert.AreEqual("./Testing/GoodFile.txt1305False5/24/2022 11:01:26 AM", testBerry.ToString(goodPath));
+		}
+
+		[TestMethod]
+		public void ToStringFail()
+		{
+
+			Assert.AreNotEqual("boo", testBerry.ToString(goodPath));
+
+		}
+
+		#endregion
+	}
 }
