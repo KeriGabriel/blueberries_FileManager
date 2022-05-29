@@ -9,11 +9,13 @@ namespace UnitTestFileManager
 	public class FileManagerTest
 	{
 
+		// Updated to use relative path
 		private static string bigFile = "BigFile.pdf";
 		private static string goodPath = "./Testing/GoodFile.txt";
 		private static string goodFile = "GoodFile.txt";
+		private static string goodFileNoExt = "GoodFile";
 
-		public TestContext TestContext { get; set; }
+		//public TestContext TestContext { get; set; }
 		[ClassInitialize]
 		public static void ClassInit(TestContext context)
 		{
@@ -40,13 +42,13 @@ namespace UnitTestFileManager
 
 		#region File Exisits? Test
 		[TestMethod]
-		public void FileExists()
+		public void FileExistsSuccess()
 		{
 			Assert.IsTrue(testBerry.FileExists(goodPath));
 		}
 
 		[TestMethod]
-		public void FileNotExists()
+		public void FileExistsFail()
 		{
 			Assert.IsFalse(testBerry.FileExists("ImaginaryFile"));
 		}
@@ -81,55 +83,26 @@ namespace UnitTestFileManager
 		}
 		#endregion
 
-		//#region Test VowelWeight(filepath)
-		//// To do:  Fix this
-		//[TestMethod]
-		//public void VowelsCorrect()
-		//{
-		//	Assert.IsTrue("what is correct value" == testBerry.VowelWeight(goodPath));
-		//}
-		//[TestMethod]
-		//public void VowelsWrong()
-		//{
-		//	Assert.IsTrue("what is correct value" == testBerry.GetVowels(goodPath));
-		//}
-		//#endregion
+		#region Test VowelWeight(filepath)
+		[TestMethod]
+		public void VowelWeightSucess()
+		{
+			Assert.IsFalse(1 == 1);
+		}
 
-		//#region Test success / failure of Blueberry.Get
-		//[TestMethod]
-		//public void ExtentionSucess()
-		//{
-		//    Assert.IsTrue("txt" == testBerry.getFileExtention(goodPath));
-		//}
+		[TestMethod]
+		public void VowelWeightFail()
+		{
+			Assert.IsFalse(1 == 1);
+		}
+		#endregion
 
-		//[TestMethod]
-		//public void ExtentionFail()
-		//{
-		//    Assert.IsFalse("pdf" == testBerry.getFileExtention(goodPath));
-		//}
-		//#endregion
-
-		//#region Test Sucess / Failure of Blueberry.ToString()
-		//// To do:  Not Done
-		//[TestMethod]
-		//public void ToStringSucess()
-		//{
-		//    Assert.IsFalse(true);
-		//}
-
-		//[TestMethod]
-		//public void ToStringFail()
-		//{
-		//    Assert.IsFalse(true);
-		//}
-
-		//#endregion
 
 		#region Test FileName(filepath)
 		[TestMethod]
 		public void FileNameSucess()
 		{
-			Assert.AreEqual(goodFile, testBerry.FileName(goodPath));
+			Assert.AreEqual(goodFileNoExt, testBerry.FileName(goodPath));
 		}
 
 		[TestMethod]
