@@ -25,7 +25,7 @@ namespace UnitTestFileManager
 		private static string goodPath = null;
 		private static string goodFile = null;
 		private static string goodFileNoExt = null;
-
+		private static string finalLocalPath=String.Empty;
 		public TestContext context;
 
 		[ClassInitialize]
@@ -34,16 +34,16 @@ namespace UnitTestFileManager
 		 bigFile = @"Testing\BigFile.pdf";
 		 goodPath = @"Testing";
 		 goodFile = @"Testing\GoodFile.txt";
-		goodFileNoExt = "GoodFile";
+		 goodFileNoExt = "GoodFile";
 
 		string localPath = Environment.CurrentDirectory;
 			localPath = Directory.GetParent(localPath).FullName;
 			localPath = Directory.GetParent(localPath).FullName;
-			localPath = Directory.GetParent(localPath).FullName;
+			 finalLocalPath = Directory.GetParent(localPath).FullName;
 
-			bigFile = Path.Combine(localPath, bigFile);
-			goodPath=Path.Combine(localPath, goodFile);
-			goodFile = Path.Combine(localPath, goodFile);
+			bigFile = Path.Combine(finalLocalPath, bigFile);
+			goodPath=Path.Combine(finalLocalPath, goodFile);
+			goodFile = Path.Combine(finalLocalPath, goodFile);
 
 			//bigFile = context.Properties["bigFile"].ToString();
 			//bigFile = Path.Combine(localPath, bigFile);
@@ -64,7 +64,7 @@ namespace UnitTestFileManager
 		[TestMethod]
 		public void DirectoryNameSucess()
 		{
-			Assert.AreEqual(".\\Testing", testBerry.DirectoryName(goodPath));
+			Assert.AreEqual(finalLocalPath+@"\Testing", testBerry.DirectoryName(goodPath));
 		}
 
 		[TestMethod]
