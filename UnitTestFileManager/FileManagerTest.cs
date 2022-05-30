@@ -51,10 +51,10 @@ namespace UnitTestFileManager
 		// //goodFile = @"Testing\GoodFile.txt";
 		// //goodFileNoExt = "GoodFile";
 
-		string localPath = Environment.CurrentDirectory;
-		localPath = Directory.GetParent(localPath).FullName;
-		localPath = Directory.GetParent(localPath).FullName;
-		finalLocalPath = Directory.GetParent(localPath).FullName;
+			string localPath = Environment.CurrentDirectory;
+			localPath = Directory.GetParent(localPath).FullName;
+			localPath = Directory.GetParent(localPath).FullName;
+			 finalLocalPath = Directory.GetParent(localPath).FullName;
 
 		//	bigFile = Path.Combine(finalLocalPath, bigFile);
 		//	goodPath=Path.Combine(finalLocalPath, goodFile);
@@ -70,9 +70,8 @@ namespace UnitTestFileManager
 		//	//goodFile = context.Properties["goodFile"].ToString();
 		//	//goodFile = Path.Combine(localPath, goodFile);
 
-		//	Console.WriteLine("Test are initializing...");
-		//}
-
+			Console.WriteLine("Test are initializing...");
+		}
 		Blueberry testBerry = new();
 
 		#region Test DirectoryName(filepath)
@@ -81,7 +80,6 @@ namespace UnitTestFileManager
 		{
 			Assert.AreEqual(finalLocalPath+@"\Testing", testBerry.DirectoryName(goodPath));
 		}
-
 		[TestMethod]
 		public void DirectoryNameFail()
 		{
@@ -109,7 +107,7 @@ namespace UnitTestFileManager
 		{
 			// Format: 12 Es, 1 A, 4 Is, 6 Os, 2 Us, 0Ys
 			//	./Testing/GoodFile.txt
-			Assert.AreEqual("2 Es, 0 A, 2 Is, 2 Os, 0 Us, 0Ys", testBerry.VowelWeight(goodPath));
+			Assert.AreEqual("1 E, 0 As, 1 I, 2 Os, 0 Us, 0 Ys", testBerry.VowelWeight(goodPath));
 		}
 
 		[TestMethod]
@@ -177,13 +175,10 @@ namespace UnitTestFileManager
 		{
 			Assert.AreEqual(finalLocalPath + @"\Testing\GoodFile.txt1305False5/29/2022 3:34:55 PM", testBerry.ToString(goodPath,true));
 		}
-
 		[TestMethod]
 		public void ToStringFail()
 		{
-
 			Assert.AreNotEqual("boo", testBerry.ToString(goodPath));
-
 		}
 
 		#endregion
