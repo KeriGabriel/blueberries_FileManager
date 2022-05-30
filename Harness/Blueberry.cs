@@ -122,17 +122,6 @@ namespace blueberries_FileManager
 				("\n File Path:{0}, \n Size:{1},\n ReadOnly:{2} \n Date Changed last:{3}", _filepath, Size, ReadOnly, DateChanged);
 
 		}
-		public string ToString(string _filepath, bool DataOnly)
-		{
-			FileInfo fileInfo = new FileInfo(_filepath);
-			long Size = fileInfo.Length;
-			bool ReadOnly = fileInfo.IsReadOnly;
-			DateTime DateChanged = File.GetLastWriteTime(_filepath);
-
-			return String.Format
-				( _filepath+Size+ReadOnly+DateChanged);
-
-		}
 		//provides length of file
 		public long GetFileLength(FileInfo fileInfo)
 		{
