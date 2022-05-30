@@ -26,6 +26,7 @@ if (ourBerry.FileExists(filepath))
 	Console.WriteLine("As a Byte Array: " + ourBerry.GetByteArray(filepath));
 
     Console.WriteLine("String Override = " + ourBerry.ToString(filepath) + "\n");
+    Console.WriteLine("String Override = " + ourBerry.ToString(filepath,true) + "\n");
 }
 else
 {

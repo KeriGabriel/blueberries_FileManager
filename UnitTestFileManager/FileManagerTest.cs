@@ -160,7 +160,7 @@ namespace UnitTestFileManager
 		[TestMethod]
 		public void ToStringSucess()
 		{
-			Assert.AreEqual("./Testing/GoodFile.txt1305False5/24/2022 11:01:26 AM", testBerry.ToString(goodPath));
+			Assert.AreEqual(finalLocalPath + @"\Testing\GoodFile.txt1305False5/29/2022 3:34:55 PM", testBerry.ToString(goodPath,true));
 		}
 
 		[TestMethod]
