@@ -1,5 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using blueberries_FileManager;
+using System;
+using System.IO;
 using System.Text;
 
 namespace UnitTestFileManager
@@ -7,30 +9,77 @@ namespace UnitTestFileManager
 	[TestClass]
 	public class FileManagerTest
 	{
-		private static string bigFile = null;
-		private static string goodPath = null;
-		private static string goodFile = null;
-		private static string goodFileNoExt = null;
+
+		//Updated to use relative path
+		private static string bigFile;
+		private static string goodPath;
+		private static string goodFile;
+		private static string goodFileNoExt;
+		public string withWords;
+
+		private static string? eNum = null;
+
+		//// Updated to use relative path
+		//private static string bigFile = @"Testing\BigFile.pdf";
+		//private static string goodPath = @"Testing";
+		//private static string goodFile = @"Testing\GoodFile.txt";
+		//private static string goodFileNoExt = "GoodFile";
+
+		//private static string bigFile = null;
+		//private static string goodPath = null;
+		//private static string goodFile = null;
+		//private static string goodFileNoExt = null;
+		private static string finalLocalPath = String.Empty;
+		public TestContext context;
 
 		[ClassInitialize]
 		public static void ClassInit(TestContext context)
 		{
-			bigFile = context.Properties["bigFile"].ToString();
-			goodPath = context.Properties["goodPath"].ToString();
-			goodFile = context.Properties["goodFile"].ToString();
-			goodFileNoExt = context.Properties["goodFileNoExt"].ToString();
+			// what do you want to set up as the test suite
+			// is about to be run
+			eNum = context.Properties["withWords"].ToString();
+			Console.WriteLine("Test are initializing...");
 		}
 
+
+
+
+		//public static void ClassInit(TestContext context)
+		//{
+		// //bigFile = @"Testing\BigFile.pdf";
+		// //goodPath = @"Testing";
+		// //goodFile = @"Testing\GoodFile.txt";
+		// //goodFileNoExt = "GoodFile";
+
+			string localPath = Environment.CurrentDirectory;
+			localPath = Directory.GetParent(localPath).FullName;
+			localPath = Directory.GetParent(localPath).FullName;
+			 finalLocalPath = Directory.GetParent(localPath).FullName;
+
+		//	bigFile = Path.Combine(finalLocalPath, bigFile);
+		//	goodPath=Path.Combine(finalLocalPath, goodFile);
+		//	goodFile = Path.Combine(finalLocalPath, goodFile);
+
+		//	//bigFile = context.Properties["bigFile"].ToString();
+		//	//bigFile = Path.Combine(localPath, bigFile);
+
+		//	//goodPath = context.Properties["goodPath"].ToString();
+		//	//goodFile = context.Properties["goodPath"].ToString();
+		//	//goodFileNoExt = context.Properties["goodFileNoExt"].ToString();
+
+		//	//goodFile = context.Properties["goodFile"].ToString();
+		//	//goodFile = Path.Combine(localPath, goodFile);
+
+			Console.WriteLine("Test are initializing...");
+		}
 		Blueberry testBerry = new();
 
 		#region Test DirectoryName(filepath)
 		[TestMethod]
 		public void DirectoryNameSucess()
 		{
-			Assert.IsTrue(1 == 2);
-			//Assert.AreEqual(finalLocalPath+@"\Testing", testBerry.DirectoryName(goodPath));
+			Assert.AreEqual(finalLocalPath+@"\Testing", testBerry.DirectoryName(goodPath));
 		}
-
 		[TestMethod]
 		public void DirectoryNameFail()
 		{
@@ -124,9 +173,8 @@ namespace UnitTestFileManager
 		[TestMethod]
 		public void ToStringSucess()
 		{
-			Assert.IsTrue(1==2);
+			Assert.AreEqual(finalLocalPath + @"\Testing\GoodFile.txt1305False5/29/2022 3:34:55 PM", testBerry.ToString(goodPath,true));
 		}
-
 		[TestMethod]
 		public void ToStringFail()
 		{
