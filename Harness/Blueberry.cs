@@ -96,29 +96,14 @@ namespace blueberries_FileManager
 
 		public string ToString(string _filepath)
 		{
-			if (FileExists(_filepath))
-			{
-				FileInfo fileInfo = new FileInfo(_filepath);
-				GetReadOnly(_filepath);
-				getDateChanged(_filepath);
-				Size = GetFileLength(fileInfo);
+			FileInfo fileInfo = new FileInfo(_filepath);
+			string returnString = string.Empty;
+			returnString += _filepath;
+			returnString += fileInfo.Length;
+			returnString += fileInfo.IsReadOnly;
+			returnString += File.GetLastWriteTime(_filepath);
 
-				//GetFileLength(_filepath);
-				return " \n The filepath: " + _filepath + "\n" +
-				" The Size of the file: " + Size + "\n" +
-				" Read only: " + ReadOnly + "\n" +
-				" Date Changed: " + DateChanged;
-			}
-			else { return "File not found"; }
-
-
-			//FileInfo fileInfo = new FileInfo(_filepath);
-			//string returnString = string.Empty;
-			//returnString += _filepath;
-			//returnString += fileInfo.Length;
-			//returnString += fileInfo.IsReadOnly;
-			//returnString += File.GetLastWriteTime(_filepath);
-			//return returnString;
+			return returnString;
 		}
 
 		//provides length of file
@@ -135,33 +120,55 @@ namespace blueberries_FileManager
 				length = 0;
 			}
 			return length;
-		}
 
-		public DateTime DateChanged { get; set; }
-		public long Size;
-		public bool ReadOnly;
 
-		public DateTime getDateChanged(string _filepath)
-			{
-				DateChanged = File.GetLastWriteTime(_filepath);
-				return DateChanged;
-			}
 
-			public string GetReadOnly(string _filepath)
-			{
-				try
-				{
-					FileInfo fileInfo = new FileInfo(_filepath);
-					if (fileInfo.IsReadOnly)
-					{
-						ReadOnly = true;
-					}
-					return ReadOnly.ToString();
-				}
-				catch (FileNotFoundException)
-				{
-					return "File Not Found";
-				}
-			}
+			//	if (FileExists(_filepath))
+			//	{
+			//		FileInfo fileInfo = new FileInfo(_filepath);
+			//		GetReadOnly(_filepath);
+			//		getDateChanged(_filepath);
+			//		Size = GetFileLength(fileInfo);
+
+			//		//GetFileLength(_filepath);
+			//		return " \n The filepath: " + _filepath + "\n" +
+			//		" The Size of the file: " + Size + "\n" +
+			//		" Read only: " + ReadOnly + "\n" +
+			//		" Date Changed: " + DateChanged;
+			//	}
+			//	else { return "File not found"; }
+			//}
+
+
+			//public DateTime DateChanged { get; set; }
+			//public long Size;
+			//public bool ReadOnly;
+
+			//// Utility Functions (can we combine this with one call?)
+			//public DateTime getDateChanged(string _filepath)
+			//      {
+			//	DateChanged= File.GetLastWriteTime(_filepath);
+			//	return DateChanged;
+			//}	
+
+			//public string GetReadOnly(string _filepath)
+			//      {
+			//          try 
+			//          {
+			//		FileInfo fileInfo = new FileInfo(_filepath);
+			//              if (fileInfo.IsReadOnly)
+			//              {
+			//			ReadOnly = true;
+			//		}
+			//		return ReadOnly.ToString();
+			//	}
+			//          catch (FileNotFoundException)
+			//          {
+			//		return "File Not Found";
+			//          }
+			//      }
+
+
 		}
 	}
+}
