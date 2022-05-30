@@ -5,11 +5,13 @@ namespace blueberries_FileManager
 {
 	public class Blueberry
 	{
+		//bool FileExists(filepath)
 		public bool FileExists(string _filepath)
 		{
+			
 			return File.Exists(_filepath);
 		}
-
+		//string DirectoryName(filepath)
 		public string DirectoryName(string _filepath)
 		{
 			if (FileExists(_filepath))
@@ -21,7 +23,7 @@ namespace blueberries_FileManager
 				return "Directory Not Found";
 			}
 		}
-
+		//string LargestFileInCurrentDirectory(filepath)
 		public string LargestFileInCurrentDirectory(string _filepath)
 		{
 			if (FileExists(_filepath))
@@ -46,7 +48,8 @@ namespace blueberries_FileManager
 				return " File not found";
 			}
 		}
-
+		//This needs to read txt file not filepath name
+		//string VowelWeight(filepath)
 		public string VowelWeight(string _filepath)
 		{
 			//     //Format: 12 Es, 1 A, 4 Is, 6 Os, 2 Us, 0Ys
@@ -64,11 +67,13 @@ namespace blueberries_FileManager
 				else output = $"{output}{c[i]} {l[i]}s, ";
 			return output.Substring(0, output.Length - 2);
 		}
-
+		//string FileName(FilePath)
 		public string FileName(string _filepath)
 		{
 			/* trim backwards to first backslash (doesn't really matter if it exists or not,
 			we are just returning the file name portion of the path string */
+
+			//*** this produces just the filename without extension or path 
 			if (FileExists(_filepath))
 			{
 				return Path.GetFileNameWithoutExtension(_filepath);
@@ -78,7 +83,7 @@ namespace blueberries_FileManager
 				return "File Not Found";
 			}
 		}
-
+		//string FileExtension(filepath)
 		public string FileExtention(string _filepath)
 		{
 			if (FileExists(_filepath))
@@ -87,25 +92,36 @@ namespace blueberries_FileManager
 			}
 			else { return "File not found"; }
 		}
-
+		//byte[] GetByteArray(filepath)
 		public byte[] GetByteArray(string _filepath)
 		{
 			return Encoding.ASCII.GetBytes(_filepath);
 
 		}
+		//public string ToString(string _filepath)
+		//{
+		//    FileInfo fileInfo = new FileInfo(_filepath);
+		//    string returnString = string.Empty;
+		//    returnString += _filepath;
+		//    returnString += fileInfo.Length;
+		//    returnString += fileInfo.IsReadOnly;
+		//    returnString += File.GetLastWriteTime(_filepath);
+
+		//    return returnString;
+		//}
+		//returns a string concatenation of:string FilePath, long Size, bool ReadOnly, DateTime DateChanged
 
 		public string ToString(string _filepath)
 		{
 			FileInfo fileInfo = new FileInfo(_filepath);
-			string returnString = string.Empty;
-			returnString += _filepath;
-			returnString += fileInfo.Length;
-			returnString += fileInfo.IsReadOnly;
-			returnString += File.GetLastWriteTime(_filepath);
+			long Size= fileInfo.Length;
+			bool ReadOnly = fileInfo.IsReadOnly;
+			DateTime DateChanged = File.GetLastWriteTime(_filepath);
 
-			return returnString;
+			return String.Format
+				("\n File Path:{0}, \n Size:{1},\n ReadOnly:{2} \n Date Changed last:{3}", _filepath, Size, ReadOnly, DateChanged);
+
 		}
-
 		//provides length of file
 		public long GetFileLength(FileInfo fileInfo)
 		{
@@ -120,55 +136,6 @@ namespace blueberries_FileManager
 				length = 0;
 			}
 			return length;
-
-
-
-			//	if (FileExists(_filepath))
-			//	{
-			//		FileInfo fileInfo = new FileInfo(_filepath);
-			//		GetReadOnly(_filepath);
-			//		getDateChanged(_filepath);
-			//		Size = GetFileLength(fileInfo);
-
-			//		//GetFileLength(_filepath);
-			//		return " \n The filepath: " + _filepath + "\n" +
-			//		" The Size of the file: " + Size + "\n" +
-			//		" Read only: " + ReadOnly + "\n" +
-			//		" Date Changed: " + DateChanged;
-			//	}
-			//	else { return "File not found"; }
-			//}
-
-
-			//public DateTime DateChanged { get; set; }
-			//public long Size;
-			//public bool ReadOnly;
-
-			//// Utility Functions (can we combine this with one call?)
-			//public DateTime getDateChanged(string _filepath)
-			//      {
-			//	DateChanged= File.GetLastWriteTime(_filepath);
-			//	return DateChanged;
-			//}	
-
-			//public string GetReadOnly(string _filepath)
-			//      {
-			//          try 
-			//          {
-			//		FileInfo fileInfo = new FileInfo(_filepath);
-			//              if (fileInfo.IsReadOnly)
-			//              {
-			//			ReadOnly = true;
-			//		}
-			//		return ReadOnly.ToString();
-			//	}
-			//          catch (FileNotFoundException)
-			//          {
-			//		return "File Not Found";
-			//          }
-			//      }
-
-
 		}
 	}
 }
