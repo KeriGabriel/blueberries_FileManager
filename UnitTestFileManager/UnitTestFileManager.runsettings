@@ -5,10 +5,8 @@
 	<TestRunParameters>
 		<Parameter name = "bigFile"	value = "BigFile.txt" />
 		<Parameter name = "goodFile"  value = "GoodFile.txt" />
-		<Parameter name = "goodPath"  value = "./Testing/GoodFile.txt" />
+		<Parameter name = "goodPath"  value = "Testing/GoodFile.txt" />
 		<Parameter name = "goodFileNoExt" value = "GoodFile" />
-		<Parameter name = "withWords"	value = "Words.txt" />
-		<Parameter name = "pathWithWords" value =".Testing/Words.txt" />
 	</TestRunParameters>
 
 	<RunConfiguration>
