@@ -73,7 +73,7 @@ namespace blueberries_FileManager
 			/* trim backwards to first backslash (doesn't really matter if it exists or not,
 			we are just returning the file name portion of the path string */
 
-			//*** this produces just the filename without extension or path without if statement it will throw unhandled exception if no file 
+			//*** this produces just the filename without extension or path 
 			if (FileExists(_filepath))
 			{
 				return Path.GetFileNameWithoutExtension(_filepath);
