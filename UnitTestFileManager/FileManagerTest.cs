@@ -21,6 +21,7 @@ namespace UnitTestFileManager
 			string localPath = Environment.CurrentDirectory;
 			localPath = Directory.GetParent(localPath).FullName;
 			localPath = Directory.GetParent(localPath).FullName;
+			localPath = Directory.GetParent(localPath).FullName;
 			finalLocalPath = Directory.GetParent(localPath).FullName;
 
 			bigFile = context.Properties["bigFile"].ToString();
@@ -135,7 +136,7 @@ namespace UnitTestFileManager
 		public void ToStringSucess()
 		{
 			//This will fail if GoodFile dateChange is changed
-			Assert.AreEqual(finalLocalPath+@"\Testing\GoodFile.txt1305False5/30/2022 7:12:27 PM", testBerry.ToString(goodFile,true));
+			Assert.AreEqual(finalLocalPath+@"\Testing\GoodFile.txt1305False5/31/2022 12:03:34 PM", testBerry.ToString(goodFile,true));
 		}
 		[TestMethod]
 		public void ToStringFail()
