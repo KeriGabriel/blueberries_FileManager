@@ -9,38 +9,14 @@ namespace UnitTestFileManager
 	[TestClass]
 	public class FileManagerTest
 	{
-
-		//Updated to use relative path
-		//private static string bigFile;
-		//private static string goodPath;
-		//private static string goodFile;
-		//private static string goodFileNoExt;
-		//public string withWords;
-
-		//private static string? eNum = null;
-
-		//// Updated to use relative path
-		//private static string bigFile = @"Testing\BigFile.pdf";
-		//private static string goodPath = @"Testing";
-		//private static string goodFile = @"Testing\GoodFile.txt";
-		//private static string goodFileNoExt = "GoodFile";
-
 		private static string bigFile = null;
-		//private static string goodPath = null;
 		private static string goodFile = null;
-		//private static string goodFileNoExt = null;
 		private static string finalLocalPath = String.Empty;
 		public TestContext TestContext;
 
 		[ClassInitialize]
-
 		public static void ClassInit(TestContext context)
 		{
-			//bigFile = @"Testing\BigFile.pdf";
-			//goodPath = @"Testing";
-			//goodFile = @"Testing\GoodFile.txt";
-			//goodFileNoExt = "GoodFile";
-
 			string localPath = Environment.CurrentDirectory;
 			localPath = Directory.GetParent(localPath).FullName;
 			localPath = Directory.GetParent(localPath).FullName;
@@ -51,15 +27,10 @@ namespace UnitTestFileManager
 			bigFile = Path.Combine(finalLocalPath, bigFile);
 			goodFile = Path.Combine(finalLocalPath, goodFile);
 
-			//bigFile = Path.Combine(localPath, bigFile);
-			//goodFile = Path.Combine(localPath, goodFile);
-			//goodFileNoExt = context.Properties["goodFileNoExt"].ToString();
-
 			Console.WriteLine("Test are initializing...");
 		}
 		Blueberry testBerry = new();
-
-		
+	
 		#region Test DirectoryName(filepath)
 		[TestMethod]
 		public void DirectoryNameSucess()

@@ -7,8 +7,7 @@ namespace blueberries_FileManager
 	{
 		//bool FileExists(filepath)
 		public bool FileExists(string _filepath)
-		{
-			
+		{	
 			return File.Exists(_filepath);
 		}
 		//string DirectoryName(filepath)
@@ -30,7 +29,6 @@ namespace blueberries_FileManager
 			{
 				//find largest file in the directory of filepath
 				//if a tie is found, first one alpha sorted
-
 				string directory = DirectoryName(_filepath);
 				DirectoryInfo directoryInfo = new DirectoryInfo(directory);
 				IEnumerable<FileInfo> fileList = directoryInfo.GetFiles("*.*", SearchOption.AllDirectories);
@@ -67,7 +65,7 @@ namespace blueberries_FileManager
 				else output = $"{output}{c[i]} {l[i]}s, ";
 			return output.Substring(0, output.Length - 2);
 		}
-
+		//string FileName(FilePath)
 		public string FileName(string _filepath)
 		{
 			/* trim backwards to first backslash (doesn't really matter if it exists or not,
@@ -83,7 +81,7 @@ namespace blueberries_FileManager
 				return "File Not Found";
 			}
 		}
-
+		//string FileExtension(filepath)
 		public string FileExtention(string _filepath)
 		{
 			if (FileExists(_filepath))
@@ -92,23 +90,18 @@ namespace blueberries_FileManager
 			}
 			else { return "File not found"; }
 		}
-
 		public byte[] GetByteArray(string _filepath)
 		{
 			return Encoding.ASCII.GetBytes(_filepath);
-
 		}
-
 		public string ToString(string _filepath)
 		{
 			FileInfo fileInfo = new FileInfo(_filepath);
 			long Size= fileInfo.Length;
 			bool ReadOnly = fileInfo.IsReadOnly;
 			DateTime DateChanged = File.GetLastWriteTime(_filepath);
-
 			return String.Format
 				("\n File Path:{0}, \n Size:{1},\n ReadOnly:{2} \n Date Changed last:{3}", _filepath, Size, ReadOnly, DateChanged);
-
 		}
 		//overloaded to provide Data only
 		public string ToString(string _filepath,bool DataOnly)
@@ -122,7 +115,7 @@ namespace blueberries_FileManager
 				 _filepath+ Size+ ReadOnly+ DateChanged;
 
 		}
-		//provides length of file
+		//provides length of file used in finding largest firectory
 		public long GetFileLength(FileInfo fileInfo)
 		{
 			long length = 0;
