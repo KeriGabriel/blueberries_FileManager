@@ -10,58 +10,65 @@ namespace UnitTestFileManager
 	public class FileManagerTest
 	{
 
-		// Updated to use relative path
-		private static string bigFile = "BigFile.pdf";
-		private static string goodPath = "./Testing/GoodFile.txt";
-		private static string goodFile = "GoodFile.txt";
-		private static string goodFileNoExt = "GoodFile";
+		//Updated to use relative path
+		//private static string bigFile;
+		//private static string goodPath;
+		//private static string goodFile;
+		//private static string goodFileNoExt;
+		//public string withWords;
 
-		//public TestContext TestContext { get; set; }
+		//private static string? eNum = null;
+
+		//// Updated to use relative path
+		//private static string bigFile = @"Testing\BigFile.pdf";
+		//private static string goodPath = @"Testing";
+		//private static string goodFile = @"Testing\GoodFile.txt";
+		//private static string goodFileNoExt = "GoodFile";
+
+		private static string bigFile = null;
+		private static string goodPath = null;
+		private static string goodFile = null;
+		private static string goodFileNoExt = null;
+		private static string finalLocalPath = String.Empty;
+		public TestContext context;
+
 		[ClassInitialize]
+
 		public static void ClassInit(TestContext context)
 		{
-			// what do you want to set up as the test suite
-			// is about to be run
-			// string localPath= Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-			//string localPath = Environment.CurrentDirectory;
+			//bigFile = @"Testing\BigFile.pdf";
+			//goodPath = @"Testing";
+			//goodFile = @"Testing\GoodFile.txt";
+			//goodFileNoExt = "GoodFile";
 
-			//bigFile = Path.Combine(root, bigFile);
-			//// goodPath = context.Properties["goodPath"].ToString();
-			//        // goodPath = Path.Combine(localPath, goodPath);
+			string localPath = Environment.CurrentDirectory;
+			localPath = Directory.GetParent(localPath).FullName;
+			localPath = Directory.GetParent(localPath).FullName;
+			finalLocalPath = Directory.GetParent(localPath).FullName;
 
-			//bigFile =  context.Properties["bigFile"].ToString();
-			//        bigFile=Path.Combine(localPath, bigFile);
+			bigFile = Path.Combine(finalLocalPath, bigFile);
+			goodFile = Path.Combine(finalLocalPath, goodFile);
 
-			//goodFile = context.Properties["goodFile"].ToString();
-			//        goodFile=Path.Combine(localPath, goodFile);
+			//bigFile = Path.Combine(localPath, bigFile);
+			//goodFile = Path.Combine(localPath, goodFile);
+
+			bigFile = context.Properties["bigFile"].ToString();
+			goodFile = context.Properties["goodFile"].ToString();
+
+
+			//goodFileNoExt = context.Properties["goodFileNoExt"].ToString();
 
 
 			Console.WriteLine("Test are initializing...");
 		}
-
 		Blueberry testBerry = new();
-
-		#region File Exisits? Test
-		[TestMethod]
-		public void FileExistsSuccess()
-		{
-			Assert.IsTrue(testBerry.FileExists(goodPath));
-		}
-
-		[TestMethod]
-		public void FileExistsFail()
-		{
-			Assert.IsFalse(testBerry.FileExists("ImaginaryFile"));
-		}
-		#endregion
 
 		#region Test DirectoryName(filepath)
 		[TestMethod]
 		public void DirectoryNameSucess()
 		{
-			Assert.AreEqual(".\\Testing", testBerry.DirectoryName(goodPath));
+			Assert.AreEqual(finalLocalPath+@"\Testing", testBerry.DirectoryName(goodPath));
 		}
-
 		[TestMethod]
 		public void DirectoryNameFail()
 		{
@@ -89,7 +96,7 @@ namespace UnitTestFileManager
 		{
 			// Format: 12 Es, 1 A, 4 Is, 6 Os, 2 Us, 0Ys
 			//	./Testing/GoodFile.txt
-			Assert.AreEqual("2 Es, 0 A, 2 Is, 2 Os, 0 Us, 0Ys", testBerry.VowelWeight(goodPath));
+			Assert.AreEqual("1 E, 0 As, 1 I, 2 Os, 0 Us, 0 Ys", testBerry.VowelWeight(goodPath));
 		}
 
 		[TestMethod]
@@ -157,13 +164,10 @@ namespace UnitTestFileManager
 		{
 			Assert.AreEqual("./Testing/GoodFile.txt1305False5/24/2022 11:01:26 AM", testBerry.ToString(goodPath));
 		}
-
 		[TestMethod]
 		public void ToStringFail()
 		{
-
 			Assert.AreNotEqual("boo", testBerry.ToString(goodPath));
-
 		}
 
 		#endregion
