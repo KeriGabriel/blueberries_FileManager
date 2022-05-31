@@ -67,7 +67,7 @@ namespace blueberries_FileManager
 				else output = $"{output}{c[i]} {l[i]}s, ";
 			return output.Substring(0, output.Length - 2);
 		}
-		//string FileName(FilePath)
+
 		public string FileName(string _filepath)
 		{
 			/* trim backwards to first backslash (doesn't really matter if it exists or not,
@@ -83,7 +83,7 @@ namespace blueberries_FileManager
 				return "File Not Found";
 			}
 		}
-		//string FileExtension(filepath)
+
 		public string FileExtention(string _filepath)
 		{
 			if (FileExists(_filepath))
@@ -92,24 +92,12 @@ namespace blueberries_FileManager
 			}
 			else { return "File not found"; }
 		}
-		//byte[] GetByteArray(filepath)
+
 		public byte[] GetByteArray(string _filepath)
 		{
 			return Encoding.ASCII.GetBytes(_filepath);
 
 		}
-		//public string ToString(string _filepath)
-		//{
-		//    FileInfo fileInfo = new FileInfo(_filepath);
-		//    string returnString = string.Empty;
-		//    returnString += _filepath;
-		//    returnString += fileInfo.Length;
-		//    returnString += fileInfo.IsReadOnly;
-		//    returnString += File.GetLastWriteTime(_filepath);
-
-		//    return returnString;
-		//}
-		//returns a string concatenation of:string FilePath, long Size, bool ReadOnly, DateTime DateChanged
 
 		public string ToString(string _filepath)
 		{

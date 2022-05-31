@@ -11,13 +11,13 @@ namespace UnitTestFileManager
 	{
 
 		//Updated to use relative path
-		private static string bigFile;
-		private static string goodPath;
-		private static string goodFile;
-		private static string goodFileNoExt;
-		public string withWords;
+		//private static string bigFile;
+		//private static string goodPath;
+		//private static string goodFile;
+		//private static string goodFileNoExt;
+		//public string withWords;
 
-		private static string? eNum = null;
+		//private static string? eNum = null;
 
 		//// Updated to use relative path
 		//private static string bigFile = @"Testing\BigFile.pdf";
@@ -25,50 +25,39 @@ namespace UnitTestFileManager
 		//private static string goodFile = @"Testing\GoodFile.txt";
 		//private static string goodFileNoExt = "GoodFile";
 
-		//private static string bigFile = null;
-		//private static string goodPath = null;
-		//private static string goodFile = null;
-		//private static string goodFileNoExt = null;
+		private static string bigFile = null;
+		private static string goodPath = null;
+		private static string goodFile = null;
+		private static string goodFileNoExt = null;
 		private static string finalLocalPath = String.Empty;
 		public TestContext context;
 
 		[ClassInitialize]
+
 		public static void ClassInit(TestContext context)
 		{
-			// what do you want to set up as the test suite
-			// is about to be run
-			eNum = context.Properties["withWords"].ToString();
-			Console.WriteLine("Test are initializing...");
-		}
-
-
-
-
-		//public static void ClassInit(TestContext context)
-		//{
-		// //bigFile = @"Testing\BigFile.pdf";
-		// //goodPath = @"Testing";
-		// //goodFile = @"Testing\GoodFile.txt";
-		// //goodFileNoExt = "GoodFile";
+			//bigFile = @"Testing\BigFile.pdf";
+			//goodPath = @"Testing";
+			//goodFile = @"Testing\GoodFile.txt";
+			//goodFileNoExt = "GoodFile";
 
 			string localPath = Environment.CurrentDirectory;
 			localPath = Directory.GetParent(localPath).FullName;
 			localPath = Directory.GetParent(localPath).FullName;
-			 finalLocalPath = Directory.GetParent(localPath).FullName;
+			finalLocalPath = Directory.GetParent(localPath).FullName;
 
-		//	bigFile = Path.Combine(finalLocalPath, bigFile);
-		//	goodPath=Path.Combine(finalLocalPath, goodFile);
-		//	goodFile = Path.Combine(finalLocalPath, goodFile);
+			bigFile = Path.Combine(finalLocalPath, bigFile);
+			goodFile = Path.Combine(finalLocalPath, goodFile);
 
-		//	//bigFile = context.Properties["bigFile"].ToString();
-		//	//bigFile = Path.Combine(localPath, bigFile);
+			//bigFile = Path.Combine(localPath, bigFile);
+			//goodFile = Path.Combine(localPath, goodFile);
 
-		//	//goodPath = context.Properties["goodPath"].ToString();
-		//	//goodFile = context.Properties["goodPath"].ToString();
-		//	//goodFileNoExt = context.Properties["goodFileNoExt"].ToString();
+			bigFile = context.Properties["bigFile"].ToString();
+			goodFile = context.Properties["goodFile"].ToString();
 
-		//	//goodFile = context.Properties["goodFile"].ToString();
-		//	//goodFile = Path.Combine(localPath, goodFile);
+
+			//goodFileNoExt = context.Properties["goodFileNoExt"].ToString();
+
 
 			Console.WriteLine("Test are initializing...");
 		}
