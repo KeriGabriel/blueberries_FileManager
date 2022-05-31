@@ -1,0 +1,53 @@
+Questions for Dan:  
+	When we received the filepath input, does that include the file name or just the path to the directory?
+
+To Do:
+
+	Unit Testing - stub for testing each function is in, need to add code for each test
+
+
+//These are the things we need to query the file stream for - grabe them all at once?
+
+object FileObject {		
+	string FileName;
+	string FilePath;
+	int Size;
+	}
+
+
+Implement Blueberry Methods or Variables?
+
+		bool FileExists(filepath) {}
+		ourBerry.Get(FileExists);
+
+		GetDirectoryName(_filepath)
+		ourBerry.Get(DirectoryName);
+			variable:  string DirectoryName
+
+		string DirectoryName(filepath)
+		
+		string LargestFileInCurrentDirectory(filepath)
+			if a tie is found, first one alpha sorted
+
+		string VowelWeight(filepath) 
+			Format: 12 Es, 1 A, 4 Is, 6 Os, 2 Us, 0Ys 
+			return all zeros if file supplied has no txt extension
+
+		string FileName
+
+		string FileExtension(filepath)
+		
+		byte[] GetByteArray(filepath)
+
+		string ToString()
+			returns a string concatenation of:
+				string FilePath
+				long Size
+				bool ReadOnly  (This will need to be collected when we gather sizes)
+				DateTime DateChanges	(Can we restrict this to date only?)
+
+
+
+Done:
+
+	Shell program to call each function is set in Harness project as the startup
