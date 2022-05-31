@@ -12,6 +12,7 @@ namespace UnitTestFileManager
 		private static string bigFile = null;
 		private static string goodFile = null;
 		private static string finalLocalPath = String.Empty;
+		private static string vowel = null;
 		public TestContext TestContext;
 
 		[ClassInitialize]
@@ -24,8 +25,10 @@ namespace UnitTestFileManager
 
 			bigFile = context.Properties["bigFile"].ToString();
 			goodFile = context.Properties["goodFile"].ToString();
+			vowel = context.Properties["vowel"].ToString();
 			bigFile = Path.Combine(finalLocalPath, bigFile);
 			goodFile = Path.Combine(finalLocalPath, goodFile);
+			vowel = Path.Combine(finalLocalPath, vowel);
 
 			Console.WriteLine("Test are initializing...");
 		}
@@ -65,7 +68,7 @@ namespace UnitTestFileManager
 		{
 			// Format: 12 Es, 1 A, 4 Is, 6 Os, 2 Us, 0Ys
 			//	./Testing/GoodFile.txt
-			Assert.AreEqual("1 E, 0 As, 1 I, 2 Os, 0 Us, 0 Ys", testBerry.VowelWeight(goodFile));
+			Assert.AreEqual("7 Es, 3 As, 4 Is, 10 Os, 1 U, 1 Y", testBerry.VowelWeight(vowel));
 		}
 
 		[TestMethod]
