@@ -29,5 +29,5 @@ if (ourBerry.FileExists(filepath))
 }
 else
 {
-    Console.WriteLine("\n Please try again with a valid file path");
+    Console.WriteLine("\nPlease try again with a valid file path");
 }
