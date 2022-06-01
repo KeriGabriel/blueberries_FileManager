@@ -61,8 +61,16 @@ namespace blueberries_FileManager
 				else c[v] = 0;
 			string output = "";
 			for (int i = 0; i < l.Length; i++)
-				if (c[i] == 1) output = $"{output}{c[i]} {l[i]}, ";
-				else output = $"{output}{c[i]} {l[i]}s, ";
+				if (c[i] == 1)
+				{
+					if (l[i] == 'Y') output = $"{output}{c[i]}{l[i]}, ";
+					else output = $"{output}{c[i]} {l[i]}, ";
+				}
+				else
+				{
+					if (l[i] == 'Y') output = $"{output}{c[i]}{l[i]}s, ";
+					else output = $"{output}{c[i]} {l[i]}s, ";
+				}
 			return output.Substring(0, output.Length - 2);
 		}
 		//string FileName(FilePath)
