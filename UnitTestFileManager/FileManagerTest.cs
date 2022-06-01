@@ -135,8 +135,9 @@ namespace UnitTestFileManager
 		[TestMethod]
 		public void ToStringSucess()
 		{
-			//This will fail if GoodFile dateChange is changed
-			Assert.AreEqual(finalLocalPath+@"\Testing\GoodFile.txt1305False5/31/2022 12:03:34 PM", testBerry.ToString(goodFile,true));
+			string DateChanged = File.GetLastWriteTime(goodFile).ToString();
+            //This will fail if GoodFile dateChange is changed
+            Assert.AreEqual(finalLocalPath + @"\Testing\GoodFile.txt1305False"+DateChanged, testBerry.ToString(goodFile,true));
 		}
 		[TestMethod]
 		public void ToStringFail()
