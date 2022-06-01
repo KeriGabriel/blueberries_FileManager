@@ -5,6 +5,7 @@
 	<TestRunParameters>
 		<Parameter name = "bigFile"	value = "Testing\BigFile.pdf" />
 		<Parameter name = "goodFile"  value = "Testing\GoodFile.txt" />
+		<Parameter name="vowel" value="Testing\Words.txt"></Parameter>
 	</TestRunParameters>
 
 	<RunConfiguration>

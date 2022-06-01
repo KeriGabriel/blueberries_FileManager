@@ -12,6 +12,7 @@ namespace UnitTestFileManager
 		private static string bigFile = null;
 		private static string goodFile = null;
 		private static string finalLocalPath = String.Empty;
+		private static string vowel = null;
 		public TestContext TestContext;
 
 		[ClassInitialize]
@@ -20,12 +21,15 @@ namespace UnitTestFileManager
 			string localPath = Environment.CurrentDirectory;
 			localPath = Directory.GetParent(localPath).FullName;
 			localPath = Directory.GetParent(localPath).FullName;
+			localPath = Directory.GetParent(localPath).FullName;
 			finalLocalPath = Directory.GetParent(localPath).FullName;
 
 			bigFile = context.Properties["bigFile"].ToString();
 			goodFile = context.Properties["goodFile"].ToString();
+			vowel = context.Properties["vowel"].ToString();
 			bigFile = Path.Combine(finalLocalPath, bigFile);
 			goodFile = Path.Combine(finalLocalPath, goodFile);
+			vowel = Path.Combine(finalLocalPath, vowel);
 
 			Console.WriteLine("Test are initializing...");
 		}
@@ -65,7 +69,7 @@ namespace UnitTestFileManager
 		{
 			// Format: 12 Es, 1 A, 4 Is, 6 Os, 2 Us, 0Ys
 			//	./Testing/GoodFile.txt
-			Assert.AreEqual("1 E, 0 As, 1 I, 2 Os, 0 Us, 0 Ys", testBerry.VowelWeight(goodFile));
+			Assert.AreEqual("7 Es, 3 As, 4 Is, 10 Os, 1 U, 1 Y", testBerry.VowelWeight(vowel));
 		}
 
 		[TestMethod]
@@ -131,8 +135,9 @@ namespace UnitTestFileManager
 		[TestMethod]
 		public void ToStringSucess()
 		{
-			//This will fail if GoodFile dateChange is changed
-			Assert.AreEqual(finalLocalPath+@"\Testing\GoodFile.txt1305False5/30/2022 7:12:27 PM", testBerry.ToString(goodFile,true));
+			string DateChanged = File.GetLastWriteTime(goodFile).ToString();
+            //This will fail if GoodFile dateChange is changed
+            Assert.AreEqual(finalLocalPath + @"\Testing\GoodFile.txt1305False"+DateChanged, testBerry.ToString(goodFile,true));
 		}
 		[TestMethod]
 		public void ToStringFail()
