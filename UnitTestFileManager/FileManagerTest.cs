@@ -69,7 +69,7 @@ namespace UnitTestFileManager
 		{
 			// Format: 12 Es, 1 A, 4 Is, 6 Os, 2 Us, 0Ys
 			//	./Testing/GoodFile.txt
-			Assert.AreEqual("7 Es, 3 As, 4 Is, 10 Os, 1 U, 1 Y", testBerry.VowelWeight(vowel));
+			Assert.AreEqual("7 Es, 3 As, 4 Is, 10 Os, 1 U, 1Y", testBerry.VowelWeight(vowel));
 		}
 
 		[TestMethod]
