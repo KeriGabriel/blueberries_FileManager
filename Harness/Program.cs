@@ -23,7 +23,7 @@ if (ourBerry.FileExists(filepath))
 
     Console.WriteLine("The file extension is: " + ourBerry.FileExtention(filepath) + "\n");
 
-	Console.WriteLine("As a Byte Array: " + ourBerry.GetByteArray(filepath));
+	Console.WriteLine("Length As a Byte Array: " + ourBerry.GetByteArray(filepath).Length +"\n");
 
     Console.WriteLine("String Override = " + ourBerry.ToString(filepath) + "\n");
 }

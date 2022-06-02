@@ -109,7 +109,7 @@ namespace blueberries_FileManager
 			bool ReadOnly = fileInfo.IsReadOnly;
 			DateTime DateChanged = File.GetLastWriteTime(_filepath);
 			return String.Format
-				("\n File Path: {0}, \n Size: {1},\n ReadOnly: {2} \n Date Changed last: {3}", _filepath, Size, ReadOnly, DateChanged);
+				("\n File Path: {0} \n Size: {1}\n ReadOnly: {2} \n Date Changed last: {3}", _filepath, Size, ReadOnly, DateChanged);
 		}
 		//overloaded to provide Data only
 		public string ToString(string _filepath,bool DataOnly)
